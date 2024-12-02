@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class prueba : MonoBehaviour
+public class Jugador : MonoBehaviour
 {
     Rigidbody2D rb;
     float hInput;
@@ -11,8 +11,11 @@ public class prueba : MonoBehaviour
     [SerializeField] int fuerzaSalto;
     [SerializeField] private GameObject piesJugador;
     [SerializeField] private float radioPies;
+    [SerializeField] private float vida;
     [SerializeField] private LayerMask queEsSuelo;
     [SerializeField] private Animator jugador;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,7 @@ public class prueba : MonoBehaviour
             //set.Bool = jugador;
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(new Vector2 (0, 1) * fuerzaSalto, ForceMode2D.Impulse); 
         }
@@ -56,5 +60,10 @@ public class prueba : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.DrawSphere(radioPies.position.radioPies);
+    }
+    public void RecibirDaño(float daño)
+    {
+        vida -= daño;
+        Debug.Log(vida);
     }
 }
